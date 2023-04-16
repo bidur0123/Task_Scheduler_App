@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
           )
         ),
         child: SingleChildScrollView(
-          padding:EdgeInsets.only(left: 15) ,
+          padding:const EdgeInsets.only(left: 15) ,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,13 +69,13 @@ class _HomePageState extends State<HomePage> {
                   chipData("Important", 0xff2bc8d9),
                 ],
               ),
-              SizedBox(height: 12.0,),
+              const SizedBox(height: 12.0),
               label("Description"),
               const SizedBox(height: 20.0),
               description(),
-              SizedBox(height: 12.0,),
+              const SizedBox(height: 12.0),
               label("Category"),
-              SizedBox(height: 12.0,),
+              const SizedBox(height: 12.0),
               Wrap(
                 runSpacing: 10,
                 children: [
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
               //     chipData('Run', 0xff82117e),
               //   ],
               // ),
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
               button(),
@@ -122,14 +122,20 @@ class _HomePageState extends State<HomePage> {
       width: MediaQuery.of(context).size.width -30,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          gradient: LinearGradient(
-              colors: [
+          gradient: const LinearGradient(
+              colors:  [
                 Color(0xff8a32f1),
                 Color(0xffad32f9)
               ]
           )
       ),
-      child: Center(child: Text("ADD Todo" , style: TextStyle(color : Colors.white , fontSize: 18.0 , fontWeight: FontWeight.w600),)),
+      child: const Center(
+          child: Text("ADD Todo" ,
+            style: TextStyle(
+                color : Colors.white ,
+                fontSize: 18.0 ,
+                fontWeight: FontWeight.w600),
+          )),
     );
   }
   Widget description (){
