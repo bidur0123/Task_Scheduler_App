@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                       letterSpacing: 4,
                       ),
                     ),
-                    Text("New Todo",style: TextStyle(
+                    Text("Your Todo",style: TextStyle(
                         fontSize: 40.0,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
