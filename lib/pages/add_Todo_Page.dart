@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class AddTodoPage extends StatefulWidget {
+  const AddTodoPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AddTodoPage> createState() => _AddTodoPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AddTodoPageState extends State<AddTodoPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
