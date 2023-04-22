@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 
 class TodoCard extends StatelessWidget {
-  const TodoCard({Key? key}) : super(key: key);
+  const TodoCard({Key? key,
+    required this.title,
+    required this.iconData,
+    required this.iconColor,
+    required this.time,
+    required this.check,
+    required this.iconBgColor}) : super(key: key);
 
+  final String title;
+  final IconData iconData;
+  final Color iconColor;
+  final String time;
+  final bool check;
+  final Color iconBgColor;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +30,7 @@ class TodoCard extends StatelessWidget {
                 ),
                 checkColor:Color(0xff0e3e26) ,
                 activeColor: Color(0xff6cf8a9),
-                  value: true,
+                  value: check,
                   onChanged: (bool? value) {},
               ),
             ),
@@ -38,25 +50,38 @@ class TodoCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       Container(
                         height: 33,
                         width: 36,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: iconBgColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Icon(Icons.audiotrack),
+                        child: Icon(iconData , color: iconColor),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
+                      Expanded(
+                        child: Text(
+                            title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            letterSpacing: 1,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
                       Text(
-                          "Lots of work",
+                        time,
                         style: TextStyle(
                           color: Colors.white,
+                          letterSpacing: 1,
                           fontSize: 16.0,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                      const SizedBox(width: 15),
                     ],
                   ),
                 ),

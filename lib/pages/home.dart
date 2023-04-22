@@ -3,7 +3,8 @@ import 'package:to_do_app/custom/TodoCard.dart';
 import 'package:to_do_app/pages/add_Todo_Page.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+ const  Home({Key? key}) : super(key: key);
+ // final titleController = TextEditingController();
 
   @override
   State<Home> createState() => _HomeState();
@@ -30,7 +31,7 @@ class _HomeState extends State<Home> {
             fontSize: 34,
           ),
         ),
-        actions:  [
+        actions:  const [
           CircleAvatar(
             backgroundImage: AssetImage("assets/images/profile.jpg"),
           ),
@@ -65,22 +66,27 @@ class _HomeState extends State<Home> {
             label: 'Home'
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              height: 52,
-              width: 52,
-              decoration:const  BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(
-                    colors: [
-                      Colors.indigoAccent,
-                      Colors.purple,
-                    ],
+            icon: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTodoPage()));
+              },
+              child: Container(
+                height: 52,
+                width: 52,
+                decoration:const  BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.indigoAccent,
+                        Colors.purple,
+                      ],
+                  ),
                 ),
-              ),
-              child:const Icon(
-                Icons.add,
-                size: 32,
-                color: Colors.white,
+                child:const Icon(
+                  Icons.add,
+                  size: 32,
+                  color: Colors.white,
+                ),
               ),
             ),
             label: 'Add'
@@ -103,12 +109,20 @@ class _HomeState extends State<Home> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20 , vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 20),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
-            children: [
-              TodoCard(),
+            children:  [
+              TodoCard(
+                title: "Wake up",
+                iconData: Icons.audiotrack,
+                iconColor: Colors.black87,
+                iconBgColor: Colors.white,
+                check: false,
+                time: "10",
+              ),
+              SizedBox(height: 15.0),
             ],
           ),
         ),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/pages/home.dart';
 import 'package:to_do_app/pages/add_Todo_Page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

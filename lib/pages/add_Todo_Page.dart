@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/pages/home.dart';
 
 class AddTodoPage extends StatefulWidget {
   const AddTodoPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const   SizedBox(
-                height: 40.0,
+                height: 60.0,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -39,20 +40,20 @@ class _AddTodoPageState extends State<AddTodoPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children:const [
-                    Text("Create",style: TextStyle(
+                    Text("Create New Todo",style: TextStyle(
                         fontSize: 40.0,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                      letterSpacing: 4,
+                      letterSpacing: 2,
                       ),
                     ),
-                    Text("Your Todo",style: TextStyle(
-                        fontSize: 40.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 4,
-                      ),
-                    ),
+                    // Text("New Todo",style: TextStyle(
+                    //     fontSize: 40.0,
+                    //     color: Colors.white,
+                    //     fontWeight: FontWeight.bold,
+                    //     letterSpacing: 4,
+                    //   ),
+                    //),
                   ],
                 ),
               ),
@@ -118,25 +119,30 @@ class _AddTodoPageState extends State<AddTodoPage> {
     );
   }
   Widget button(){
-    return Container(
-      height: 56.0,
-      width: MediaQuery.of(context).size.width -30,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          gradient: const LinearGradient(
-              colors:  [
-                Color(0xff8a32f1),
-                Color(0xffad32f9)
-              ]
-          )
+    return InkWell(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+      },
+      child: Container(
+        height: 56.0,
+        width: MediaQuery.of(context).size.width -30,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            gradient: const LinearGradient(
+                colors:  [
+                  Color(0xff8a32f1),
+                  Color(0xffad32f9)
+                ]
+            )
+        ),
+        child: const Center(
+            child: Text("ADD Todo" ,
+              style: TextStyle(
+                  color : Colors.white ,
+                  fontSize: 18.0 ,
+                  fontWeight: FontWeight.w600),
+            )),
       ),
-      child: const Center(
-          child: Text("ADD Todo" ,
-            style: TextStyle(
-                color : Colors.white ,
-                fontSize: 18.0 ,
-                fontWeight: FontWeight.w600),
-          )),
     );
   }
   Widget description (){
@@ -196,13 +202,13 @@ class _AddTodoPageState extends State<AddTodoPage> {
         borderRadius: BorderRadius.circular(10.0)
       ),
       label : Text(label,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 15,
           fontWeight: FontWeight.w600,
         ),
       ),
-      labelPadding: EdgeInsets.symmetric(horizontal: 17.0 , vertical: 3.8),
+      labelPadding: const EdgeInsets.symmetric(horizontal: 17.0 , vertical: 3.8),
     );
   }
   Widget label (String label){
