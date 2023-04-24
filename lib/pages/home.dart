@@ -19,6 +19,10 @@ class _HomeState extends State<Home> {
   ];
 
   final Stream<QuerySnapshot> _stream= FirebaseFirestore.instance.collection("Todo").snapshots();
+
+  var iconData;
+
+  var iconColor;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,12 +122,39 @@ class _HomeState extends State<Home> {
                   final DocumentSnapshot documentSnapshot= snapshot.data!.docs[index];
                   Map<String,dynamic> document =
                      snapshot.data!.docs[index].data() as Map<String , dynamic> ;
+
+                     switch(document["category"]){
+                       case "Work" :
+                          iconData = Icons.run_circle_outlined;
+                          iconColor =Colors.red;
+                         break;
+                       case "Workout" :
+                         iconData = Icons.alarm;
+                         iconColor =Colors.red;
+                         break;
+                       case "Food" :
+                         iconData = Icons.local_grocery_store;
+                         iconColor =Colors.red;
+                         break;
+                       case "Run" :
+                         iconData = Icons.run_circle_outlined;
+                         iconColor =Colors.red;
+                         break;
+                       case "Design" :
+                         iconData = Icons.design_services;
+                         iconColor =Colors.red;
+                         break;
+                       default :
+                         iconData = Icons.design_services;
+                         iconColor =Colors.red;
+
+                  }
                   return TodoCard(
-                          title: "Wake up",
-                          iconData: Icons.audiotrack,
-                          iconColor: Colors.black87,
+                          title: document["title"],
+                          iconData: iconData,
+                          iconColor: iconColor,
                           iconBgColor: Colors.white,
-                          check: false,
+                          check: true,
                           time: "10",
                   );
                 }

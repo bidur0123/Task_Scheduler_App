@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class TodoCard extends StatelessWidget {
   const TodoCard({Key? key,
-     this.title,
-     this.iconData,
-     this.iconColor,
-     this.time,
-     this.check,
-     this.iconBgColor}) : super(key: key);
+     required this.title,
+     required this.iconData,
+     required this.iconColor,
+     required this.time,
+     required this.check,
+     required this.iconBgColor}) : super(key: key);
 
-  final String   ? title;
-  final IconData ? iconData;
-  final Color    ? iconColor;
-  final String   ? time;
-  final bool     ? check;
-  final Color    ? iconBgColor;
+  final String    title;
+  final IconData  iconData;
+  final Color     iconColor;
+  final String    time;
+  final bool      check;
+  final Color     iconBgColor;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,7 +63,7 @@ class TodoCard extends StatelessWidget {
                       const SizedBox(width: 15),
                       Expanded(
                         child: Text(
-                            title!,
+                            title,
                           style: const TextStyle(
                             color: Colors.white,
                             letterSpacing: 1,
@@ -73,7 +73,7 @@ class TodoCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        time!,
+                        time,
                         style: const TextStyle(
                           color: Colors.white,
                           letterSpacing: 1,
