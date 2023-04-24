@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:to_do_app/pages/home.dart';
 
 class AddTodoPage extends StatefulWidget {
   const AddTodoPage({Key? key}) : super(key: key);
@@ -11,7 +9,8 @@ class AddTodoPage extends StatefulWidget {
 }
 
 class _AddTodoPageState extends State<AddTodoPage> {
-  final message = SnackBar(content: Text("This is snackbar"));
+
+  final message = const SnackBar(content: Text("This is snackbar"));
    TextEditingController _titleController = TextEditingController();
    TextEditingController _descriptionController = TextEditingController();
 
@@ -30,8 +29,8 @@ class _AddTodoPageState extends State<AddTodoPage> {
               Color(0xff1d1e26),
               Color(0xff252041),
             ],
-            tileMode: TileMode.mirror
-          )
+            tileMode: TileMode.mirror,
+          ),
         ),
         child: SingleChildScrollView(
           padding:const EdgeInsets.only(left: 15) ,
@@ -270,7 +269,8 @@ class _AddTodoPageState extends State<AddTodoPage> {
             ),
         ),
         child: const Center(
-            child: Text("ADD Todo" ,
+            child: Text(
+              "ADD Todo" ,
               style: TextStyle(
                   color : Colors.white ,
                   fontSize: 18.0 ,

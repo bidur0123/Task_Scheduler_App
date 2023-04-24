@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class TodoCard extends StatelessWidget {
   const TodoCard({Key? key,
-    required this.title,
-    required this.iconData,
-    required this.iconColor,
-    required this.time,
-    required this.check,
-    required this.iconBgColor}) : super(key: key);
+     this.title,
+     this.iconData,
+     this.iconColor,
+     this.time,
+     this.check,
+     this.iconBgColor}) : super(key: key);
 
-  final String title;
-  final IconData iconData;
-  final Color iconColor;
-  final String time;
-  final bool check;
-  final Color iconBgColor;
+  final String   ? title;
+  final IconData ? iconData;
+  final Color    ? iconColor;
+  final String   ? time;
+  final bool     ? check;
+  final Color    ? iconBgColor;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,8 +28,8 @@ class TodoCard extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
-                checkColor:Color(0xff0e3e26) ,
-                activeColor: Color(0xff6cf8a9),
+                  checkColor:Color(0xff0e3e26) ,
+                  activeColor: Color(0xff6cf8a9),
                   value: check,
                   onChanged: (bool? value) {},
               ),
@@ -63,8 +63,8 @@ class TodoCard extends StatelessWidget {
                       const SizedBox(width: 15),
                       Expanded(
                         child: Text(
-                            title,
-                          style: TextStyle(
+                            title!,
+                          style: const TextStyle(
                             color: Colors.white,
                             letterSpacing: 1,
                             fontSize: 16.0,
@@ -73,8 +73,8 @@ class TodoCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        time,
-                        style: TextStyle(
+                        time!,
+                        style: const TextStyle(
                           color: Colors.white,
                           letterSpacing: 1,
                           fontSize: 16.0,
