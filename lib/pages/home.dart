@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/custom/TodoCard.dart';
 import 'package:to_do_app/pages/add_Todo_Page.dart';
+import 'package:to_do_app/pages/view_data.dart';
 
 class Home extends StatefulWidget {
  const  Home({Key? key}) : super(key: key);
@@ -149,13 +150,18 @@ class _HomeState extends State<Home> {
                          iconColor =Colors.red;
 
                   }
-                  return TodoCard(
-                          title: document["title"],
-                          iconData: iconData,
-                          iconColor: iconColor,
-                          iconBgColor: Colors.white,
-                          check: true,
-                          time: "10",
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewData()));
+                    },
+                    child: TodoCard(
+                            title: document["title"],
+                            iconData: iconData,
+                            iconColor: iconColor,
+                            iconBgColor: Colors.white,
+                            check: true,
+                            time: "10",
+                    ),
                   );
                 }
             );
