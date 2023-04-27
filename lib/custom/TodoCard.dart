@@ -22,21 +22,21 @@ class TodoCard extends StatelessWidget {
       child: Row(
         children: [
           Theme(
+            data: ThemeData(
+              primarySwatch: Colors.blue,
+              unselectedWidgetColor: const Color(0xff5e616a),
+            ),
             child: Transform.scale(
               scale: 1.5,
               child: Checkbox(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
-                  checkColor:Color(0xff0e3e26) ,
-                  activeColor: Color(0xff6cf8a9),
+                  checkColor:const Color(0xff0e3e26) ,
+                  activeColor: const Color(0xff6cf8a9),
                   value: check,
                   onChanged: (bool? value) {},
               ),
-            ),
-            data: ThemeData(
-              primarySwatch: Colors.blue,
-              unselectedWidgetColor: Color(0xff5e616a),
             ),
           ),
           Expanded(
@@ -44,7 +44,7 @@ class TodoCard extends StatelessWidget {
                 height: 75,
               //  width: MediaQuery.of(context).size.width,
                 child: Card(
-                  color: Color(0xff2a2e3d),
+                  color: const Color(0xff2a2e3d),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

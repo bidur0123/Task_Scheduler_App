@@ -11,8 +11,8 @@ class AddTodoPage extends StatefulWidget {
 class _AddTodoPageState extends State<AddTodoPage> {
 
   final message = const SnackBar(content: Text("This is snackbar"));
-   TextEditingController _titleController = TextEditingController();
-   TextEditingController _descriptionController = TextEditingController();
+   final TextEditingController _titleController = TextEditingController();
+   final TextEditingController _descriptionController = TextEditingController();
 
    String taskType = "";
    String category = "";
@@ -100,23 +100,6 @@ class _AddTodoPageState extends State<AddTodoPage> {
                   categorySelect('Run', 0xff82117e),
                 ],
               ),
-              // Row(
-              //   children: [
-              //     chipData('Food',0xffff6d6e ),
-              //     const SizedBox(width: 20.0),
-              //     chipData('Workout', 0xff58c490),
-              //     const SizedBox(width: 20.0),
-              //     chipData('Work',0xffe69045),
-              //   ],
-              // ),
-              // const SizedBox(height: 20.0),
-              // Row(
-              //   children: [
-              //     chipData('Design',0xff234ebd ),
-              //     const SizedBox(width: 20.0),
-              //     chipData('Run', 0xff82117e),
-              //   ],
-              // ),
               const SizedBox(
                 height: 30.0,
               ),
@@ -131,7 +114,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
     return Container(
       width: MediaQuery.of(context).size.width -35,
       decoration: BoxDecoration(
-        color: Color(0xff2a2e3d),
+        color: const Color(0xff2a2e3d),
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextFormField(
@@ -157,7 +140,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
       height: 150,
       width: MediaQuery.of(context).size.width - 35,
       decoration: BoxDecoration(
-        color: Color(0xff2a2e3d),
+        color: const Color(0xff2a2e3d),
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextFormField(
@@ -243,10 +226,10 @@ class _AddTodoPageState extends State<AddTodoPage> {
             "category" : category
           }
         );
-        final text = 'Task has been added successfully';
+        const text = 'Task has been added successfully';
         final snackbar = SnackBar(
-            content: Text(text),
-            duration: Duration(seconds: 3),
+            content: const Text(text),
+            duration: const Duration(seconds: 3),
             backgroundColor: Colors.red,
             action: SnackBarAction(
               label: 'Dismiss',

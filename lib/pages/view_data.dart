@@ -2,9 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ViewData extends StatefulWidget {
-    ViewData({Key? key }) : super(key: key);
+    ViewData({Key? key ,required  this.document}) : super(key: key);
 
 
+    final Map<String, dynamic>  document;
+   // Map<String, dynamic> myMap = {"myString": myString};
+
+    // final DocumentReference document = FirebaseFirestore.instance.collection('todos').doc('todo_id');
+    // Map<String, dynamic> updatedData = {
+    //   'title': 'title',
+    //   'description': 'description'
+    // };
+    final Stream<QuerySnapshot> _stream= FirebaseFirestore.instance.collection("Todo").snapshots();
 
   @override
   State<ViewData> createState() => _ViewDataState();
@@ -12,19 +21,23 @@ class ViewData extends StatefulWidget {
 
 class _ViewDataState extends State<ViewData> {
 
-  final message = const SnackBar(content: Text("This is snackbar"));
   late TextEditingController _titleController ;
-  final TextEditingController _descriptionController = TextEditingController();
+  late TextEditingController _descriptionController;
 
-  String taskType = "";
-  String category = "";
+  late String  taskType ;
+  late String  category ;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    String title = widget.document!["title"] ;
+    String title = widget.document["title"] ?? "Hello Bidur";
     _titleController = TextEditingController( text: title);
+
+    String description = widget.document["description"] ?? "Hello Bidur";
+    _descriptionController = TextEditingController(text:  description);
+    taskType = widget.document["task"] ?? "task";
+    category = widget.document["category"] ?? "category";
   }
 
   @override
@@ -124,7 +137,7 @@ class _ViewDataState extends State<ViewData> {
     return Container(
       width: MediaQuery.of(context).size.width -35,
       decoration: BoxDecoration(
-        color: Color(0xff2a2e3d),
+        color: const Color(0xff2a2e3d),
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextFormField(
@@ -150,7 +163,7 @@ class _ViewDataState extends State<ViewData> {
       height: 150,
       width: MediaQuery.of(context).size.width - 35,
       decoration: BoxDecoration(
-        color: Color(0xff2a2e3d),
+        color: const Color(0xff2a2e3d),
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextFormField(
@@ -236,10 +249,10 @@ class _ViewDataState extends State<ViewData> {
               "category" : category
             }
         );
-        final text = 'Task has been added successfully';
+        const text = 'Task has been added successfully';
         final snackbar = SnackBar(
-          content: Text(text),
-          duration: Duration(seconds: 3),
+          content: const Text(text),
+          duration: const Duration(seconds: 3),
           backgroundColor: Colors.red,
           action: SnackBarAction(
             label: 'Dismiss',
@@ -274,3 +287,4 @@ class _ViewDataState extends State<ViewData> {
     );
   }
 }
+

@@ -120,7 +120,7 @@ class _HomeState extends State<Home> {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context , index){
-                  final DocumentSnapshot documentSnapshot= snapshot.data!.docs[index];
+                //  final DocumentSnapshot documentSnapshot= snapshot.data!.docs[index];
                   Map<String,dynamic> document =
                      snapshot.data!.docs[index].data() as Map<String , dynamic> ;
 
@@ -152,7 +152,10 @@ class _HomeState extends State<Home> {
                   }
                   return InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewData()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => ViewData(
+                            document: {},
+                          )));
                     },
                     child: TodoCard(
                             title: document["title"],
