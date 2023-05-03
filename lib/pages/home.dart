@@ -154,7 +154,8 @@ class _HomeState extends State<Home> {
                     onTap: (){
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ViewData(
-                            document: {},
+                            document: document,
+                            id: snapshot.data!.docs[index].id,
                           )));
                     },
                     child: TodoCard(

@@ -1,19 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ViewData extends StatefulWidget {
-    ViewData({Key? key ,required  this.document}) : super(key: key);
-
+    ViewData({Key? key ,required  this.document, required this.id}) : super(key: key);
 
     final Map<String, dynamic>  document;
-   // Map<String, dynamic> myMap = {"myString": myString};
-
-    // final DocumentReference document = FirebaseFirestore.instance.collection('todos').doc('todo_id');
-    // Map<String, dynamic> updatedData = {
-    //   'title': 'title',
-    //   'description': 'description'
-    // };
-    final Stream<QuerySnapshot> _stream= FirebaseFirestore.instance.collection("Todo").snapshots();
+    final String id;
 
   @override
   State<ViewData> createState() => _ViewDataState();
@@ -23,18 +16,18 @@ class _ViewDataState extends State<ViewData> {
 
   late TextEditingController _titleController ;
   late TextEditingController _descriptionController;
-
   late String  taskType ;
   late String  category ;
+  bool edit = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    String title = widget.document["title"] ?? "Hello Bidur";
+    String title = widget.document["title"] ==null ? "Hello Bidur" :widget.document["title"] ;
     _titleController = TextEditingController( text: title);
 
-    String description = widget.document["description"] ?? "Hello Bidur";
+    String description = widget.document["description"] == null ? "Hello Bidur" : widget.document["description"];
     _descriptionController = TextEditingController(text:  description);
     taskType = widget.document["task"] ?? "task";
     category = widget.document["category"] ?? "category";
@@ -62,28 +55,85 @@ class _ViewDataState extends State<ViewData> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const   SizedBox(
-                height: 60.0,
+                height: 30.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        CupertinoIcons.arrow_left,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: (){
+                         FirebaseFirestore.instance
+                             .collection("Todo")
+                             .doc(widget.id)
+                             .delete()
+                             .then((value) {
+                               Navigator.pop(context);
+                         }
+                         );
+                        },
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red ,
+                          size: 28,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: (){
+                          setState(() {
+                            edit = !edit;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.edit,
+                          color: edit? Colors.red : Colors.white,
+                          size: 28,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children:const [
-                    Text("View Your Todo",style: TextStyle(
-                      fontSize: 40.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
+                  children: [
+                    Row(
+                      children:  [
+                        Text(
+                         edit ? "Editing": "View ",
+                          style: TextStyle(
+                          fontSize: 40.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                        ),
+                        ),
+                        SizedBox(
+                          width: 5.0,
+                        ),
+                        Text("Your Todo",style: TextStyle(
+                          fontSize: 40.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                        ),
+                        ),
+                      ],
                     ),
-                    ),
-                    // Text("New Todo",style: TextStyle(
-                    //     fontSize: 40.0,
-                    //     color: Colors.white,
-                    //     fontWeight: FontWeight.bold,
-                    //     letterSpacing: 4,
-                    //   ),
-                    //),
                   ],
                 ),
               ),
@@ -126,7 +176,7 @@ class _ViewDataState extends State<ViewData> {
               const SizedBox(
                 height: 30.0,
               ),
-              button(),
+              edit ? button() : Container(),
             ],
           ),
         ),
@@ -142,6 +192,7 @@ class _ViewDataState extends State<ViewData> {
       ),
       child: TextFormField(
         controller: _titleController,
+        enabled: edit,
         style: const TextStyle(
           color: Colors.grey,
           fontSize: 17,
@@ -168,6 +219,7 @@ class _ViewDataState extends State<ViewData> {
       ),
       child: TextFormField(
         controller: _descriptionController,
+        enabled: edit,
         style: const TextStyle(
           color: Colors.grey,
           fontSize: 17,
@@ -187,11 +239,13 @@ class _ViewDataState extends State<ViewData> {
   }
   Widget taskSelect ( String label , int color){
     return InkWell(
-      onTap: (){
-        setState(() {
-          taskType = label;
-        });
-      },
+      onTap:edit
+          ? (){
+                setState(() {
+                  taskType = label;
+                });
+              }
+           : null,
       child: Chip(
         backgroundColor: taskType == label ? Colors.white : Color(color),   //  0xffff6dde
         shape: RoundedRectangleBorder(
@@ -209,11 +263,13 @@ class _ViewDataState extends State<ViewData> {
   }
   Widget categorySelect ( String label , int color){
     return InkWell(
-      onTap: (){
-        setState(() {
-          category = label;
-        });
-      },
+      onTap: edit
+          ? (){
+            setState(() {
+              category = label;
+            });
+          }
+       : null,
       child: Chip(
         backgroundColor: category == label ? Colors.white : Color(color),   //  0xffff6dde
         shape: RoundedRectangleBorder(
@@ -241,7 +297,7 @@ class _ViewDataState extends State<ViewData> {
   Widget button(){
     return InkWell(
       onTap: (){
-        FirebaseFirestore.instance.collection("Todo").add(
+        FirebaseFirestore.instance.collection("Todo").doc(widget.id).update(
             {
               "title" : _titleController.text,
               "task" : taskType,
@@ -249,7 +305,7 @@ class _ViewDataState extends State<ViewData> {
               "category" : category
             }
         );
-        const text = 'Task has been added successfully';
+        const text = 'Task has been updated successfully';
         final snackbar = SnackBar(
           content: const Text(text),
           duration: const Duration(seconds: 3),
@@ -276,7 +332,7 @@ class _ViewDataState extends State<ViewData> {
         ),
         child: const Center(
           child: Text(
-            "Update" ,
+            "Update Todo" ,
             style: TextStyle(
                 color : Colors.white ,
                 fontSize: 18.0 ,
