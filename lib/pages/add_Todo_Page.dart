@@ -28,6 +28,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
             colors: [
               Color(0xff1d1e26),
               Color(0xff252041),
+
             ],
             tileMode: TileMode.mirror,
           ),

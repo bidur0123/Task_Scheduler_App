@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 34,
+            fontSize: 35,
           ),
         ),
         actions:  const [
@@ -148,7 +148,6 @@ class _HomeState extends State<Home> {
                        default :
                          iconData = Icons.design_services;
                          iconColor =Colors.red;
-
                   }
                   return InkWell(
                     onTap: (){

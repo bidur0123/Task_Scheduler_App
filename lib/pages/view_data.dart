@@ -64,7 +64,7 @@ class _ViewDataState extends State<ViewData> {
                       onPressed: (){
                         Navigator.pop(context);
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         CupertinoIcons.arrow_left,
                         color: Colors.white,
                         size: 28,
@@ -83,7 +83,7 @@ class _ViewDataState extends State<ViewData> {
                          }
                          );
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.delete,
                           color: Colors.red ,
                           size: 28,
@@ -122,7 +122,7 @@ class _ViewDataState extends State<ViewData> {
                           letterSpacing: 2,
                         ),
                         ),
-                        SizedBox(
+                       const SizedBox(
                           width: 5.0,
                         ),
                         Text("Your Todo",style: TextStyle(
