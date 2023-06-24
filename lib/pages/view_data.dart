@@ -115,7 +115,7 @@ class _ViewDataState extends State<ViewData> {
                       children:  [
                         Text(
                          edit ? "Editing": "View ",
-                          style: TextStyle(
+                          style: const TextStyle(
                           fontSize: 40.0,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -125,7 +125,9 @@ class _ViewDataState extends State<ViewData> {
                        const SizedBox(
                           width: 5.0,
                         ),
-                        Text("Your Todo",style: TextStyle(
+                        const Text(
+                          "Your Todo",
+                          style: TextStyle(
                           fontSize: 40.0,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -342,5 +344,53 @@ class _ViewDataState extends State<ViewData> {
       ),
     );
   }
+  // Widget button(){
+  //   return InkWell(
+  //     onTap: (){
+  //       FirebaseFirestore.instance.collection("Todo").doc(widget.id).update(
+  //           {
+  //             "title" : _titleController.text,
+  //             "task" : taskType,
+  //             "description" : _descriptionController.text,
+  //             "category" : category
+  //           }
+  //       );
+  //       const text = 'Task has been updated successfully';
+  //       final snackbar = SnackBar(
+  //         content: const Text(text),
+  //         duration: const Duration(seconds: 3),
+  //         backgroundColor: Colors.red,
+  //         action: SnackBarAction(
+  //           label: 'Dismiss',
+  //           onPressed: (){},
+  //         ),
+  //       );
+  //       ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  //       Navigator.pop(context);
+  //     },
+  //     child: Container(
+  //       height: 56.0,
+  //       width: MediaQuery.of(context).size.width -30,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(20.0),
+  //         gradient: const LinearGradient(
+  //             colors:  [
+  //               Color(0xff8a32f1),
+  //               Color(0xffad32f9),
+  //             ]
+  //         ),
+  //       ),
+  //       child: const Center(
+  //         child: Text(
+  //           "Update Todo" ,
+  //           style: TextStyle(
+  //               color : Colors.white ,
+  //               fontSize: 18.0 ,
+  //               fontWeight: FontWeight.w600),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }
 
