@@ -9,12 +9,12 @@ class TodoCard extends StatelessWidget {
      required this.check,
      required this.iconBgColor}) : super(key: key);
 
-  final String    title;
-  final IconData  iconData;
-  final Color     iconColor;
-  final String    time;
-  final bool      check;
-  final Color     iconBgColor;
+    final String    title;
+    final IconData  iconData;
+    final Color     iconColor;
+    final String    time;
+    final bool      check;
+    final Color     iconBgColor;
   @override
   Widget build(BuildContext context) {
     return Container(
