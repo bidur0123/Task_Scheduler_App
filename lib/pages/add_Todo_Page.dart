@@ -10,7 +10,7 @@ class AddTodoPage extends StatefulWidget {
 
 class _AddTodoPageState extends State<AddTodoPage> {
 
-  final message = const SnackBar(content: Text("This is snackbar"));
+  final message = const SnackBar(content: Text("snackbar is added"));
    final TextEditingController _titleController = TextEditingController();
    final TextEditingController _descriptionController = TextEditingController();
 
