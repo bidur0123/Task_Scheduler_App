@@ -264,4 +264,15 @@ class _AddTodoPageState extends State<AddTodoPage> {
       ),
     );
   }
+
+  Widget Texttt (String label){
+    return Text(
+      label ,
+      style: const TextStyle(
+          color: Colors.blue ,
+          fontSize: 30 ,
+          fontWeight: FontWeight.w600
+      ),
+    );
+  }
 }
