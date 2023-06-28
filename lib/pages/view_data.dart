@@ -24,7 +24,7 @@ class _ViewDataState extends State<ViewData> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    String title = widget.document["title"] ==null ? "Hello Bidur" :widget.document["title"] ;
+    String title = widget.document["title"] ==null ? "Enter some data" :widget.document["title"] ;
     _titleController = TextEditingController( text: title);
 
     String description = widget.document["description"] == null ? "Hello Bidur" : widget.document["description"];
